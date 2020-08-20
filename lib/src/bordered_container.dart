@@ -29,7 +29,7 @@ class BorderedContainer extends StatelessWidget {
           spreadRadius: 3.0)
     ],
     this.child,
-    this.strokeWidth = 10.0,
+    this.strokeWidth = 1.0,
   }) : super(key: key);
 
   @override
