@@ -10,6 +10,7 @@ class BorderedContainer extends StatelessWidget {
   final Color fillColor;
   final BorderRadiusGeometry borderRadius;
   final List<BoxShadow> boxShadow;
+  final Gradient gradient;
   final double strokeWidth;
 
   const BorderedContainer({
@@ -28,6 +29,7 @@ class BorderedContainer extends StatelessWidget {
           offset: Offset(0.0, 5.0),
           spreadRadius: 3.0)
     ],
+    this.gradient,
     this.child,
     this.strokeWidth = 1.0,
   }) : super(key: key);
@@ -45,7 +47,8 @@ class BorderedContainer extends StatelessWidget {
             color: borderColor,
           ),
           borderRadius: borderRadius,
-          boxShadow: boxShadow),
+          boxShadow: boxShadow,
+          gradient: gradient),
       height: height,
       child: child,
     );

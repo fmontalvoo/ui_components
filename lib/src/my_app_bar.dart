@@ -11,6 +11,7 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
   final ImageProvider<dynamic> image;
   final Color opacityImg;
   final BorderRadiusGeometry appBarBorderRadius;
+  final Gradient gradient;
   final Object tag;
 
   const MyAppBar(
@@ -23,6 +24,7 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
       this.image,
       this.opacityImg = const Color.fromRGBO(91, 91, 91, 0.5),
       this.appBarBorderRadius,
+      this.gradient,
       this.tag = ''})
       : super(key: key);
 
@@ -30,7 +32,11 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Container(
-      decoration: BoxDecoration(color: color, borderRadius: appBarBorderRadius),
+      decoration: BoxDecoration(
+        color: color,
+        borderRadius: appBarBorderRadius,
+        gradient: gradient,
+      ),
       height: height,
       child: Stack(
         children: <Widget>[
