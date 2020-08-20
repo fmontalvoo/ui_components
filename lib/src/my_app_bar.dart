@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 
-import 'package:ui_components/src/my_back_button.dart';
+import 'package:ui_components/ui_components.dart';
 
-class MyAppBar extends StatelessWidget {
+class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Color color;
   final double height;
   final Widget rigthButtonBar;
   final Widget leftButtonBar;
   final Widget title;
-  final Widget image;
-  final double opacityImg;
+  final ImageProvider<dynamic> image;
+  final Color opacityImg;
+  final BorderRadiusGeometry appBarBorderRadius;
+  final Object tag;
 
   const MyAppBar(
       {Key key,
@@ -19,23 +21,25 @@ class MyAppBar extends StatelessWidget {
       this.leftButtonBar,
       this.title,
       this.image,
-      this.opacityImg = 0.5})
+      this.opacityImg = const Color.fromRGBO(91, 91, 91, 0.5),
+      this.appBarBorderRadius,
+      this.tag = ''})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Container(
-      color: color,
+      decoration: BoxDecoration(color: color, borderRadius: appBarBorderRadius),
       height: height,
       child: Stack(
         children: <Widget>[
-          image != null ? _image() : Container(),
+          image != null ? _image() : SizedBox(),
           title != null
               ? Center(
                   child: SafeArea(child: title),
                 )
-              : Container(),
+              : SizedBox(),
           Positioned(
             left: 0.0,
             top: size.shortestSide * .01,
@@ -47,7 +51,7 @@ class MyAppBar extends StatelessWidget {
                   top: size.shortestSide * .01,
                   child: leftButtonBar,
                 )
-              : Container(),
+              : SizedBox(),
         ],
       ),
     );
@@ -55,16 +59,25 @@ class MyAppBar extends StatelessWidget {
 
   Widget _image() {
     return Stack(children: <Widget>[
-      Container(
-        width: double.infinity,
-        height: this.height,
-        child: this.image,
+      Center(
+        child: Hero(
+          tag: tag,
+          child: Container(
+            decoration: BoxDecoration(
+                borderRadius: appBarBorderRadius,
+                image: DecorationImage(fit: BoxFit.cover, image: this.image)),
+          ),
+        ),
       ),
       Container(
+        decoration:
+            BoxDecoration(color: opacityImg, borderRadius: appBarBorderRadius),
         width: double.infinity,
         height: this.height,
-        color: Color.fromRGBO(91, 91, 91, this.opacityImg),
       )
     ]);
   }
+
+  @override
+  Size get preferredSize => Size.fromHeight(height);
 }

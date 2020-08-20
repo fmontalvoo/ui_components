@@ -3,11 +3,15 @@ import 'package:flutter/material.dart';
 class MyBackButton extends StatelessWidget {
   final Color backgroundColor;
   final Color arrowColor;
+  final double elevation;
+  final Object heroTag;
 
   const MyBackButton(
       {Key key,
       this.backgroundColor: Colors.white,
-      this.arrowColor: Colors.black})
+      this.arrowColor: Colors.black,
+      this.elevation,
+      this.heroTag = 'back'})
       : super(key: key);
 
   @override
@@ -20,27 +24,15 @@ class MyBackButton extends StatelessWidget {
 
   FloatingActionButton _floatingActionButton(BuildContext context) {
     return FloatingActionButton(
-        heroTag: 'back',
+        heroTag: heroTag,
         backgroundColor: backgroundColor,
-        elevation: 10.0,
+        elevation: elevation,
         mini: true,
         child: _BackButtonIcon(
           color: arrowColor,
         ),
         onPressed: () => Navigator.maybePop(context));
   }
-
-//   Widget _button(BuildContext context) {
-//     return ClipOval(
-//       child: Material(
-//         color: Colors.white70,
-//         child: InkWell(
-//           child: SizedBox(width: 40, height: 40, child: _BackButtonIcon()),
-//           onTap: () => Navigator.maybePop(context),
-//         ),
-//       ),
-//     );
-//   }
 }
 
 class _BackButtonIcon extends StatelessWidget {

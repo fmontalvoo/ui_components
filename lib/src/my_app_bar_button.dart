@@ -2,17 +2,19 @@ import 'package:flutter/material.dart';
 
 class MyAppBarButton extends StatelessWidget {
   final Icon icon;
-  final String heroTag;
+  final Object heroTag;
+  final double elevation;
   final Color backgroundColor;
   final VoidCallback onPressed;
 
-  const MyAppBarButton(
-      {Key key,
-      this.icon,
-      this.heroTag,
-      this.backgroundColor: Colors.white,
-      @required this.onPressed})
-      : super(key: key);
+  const MyAppBarButton({
+    Key key,
+    this.icon,
+    this.heroTag = '',
+    this.elevation = 7.0,
+    this.backgroundColor: Colors.white,
+    @required this.onPressed,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +28,7 @@ class MyAppBarButton extends StatelessWidget {
     return FloatingActionButton(
         heroTag: heroTag,
         backgroundColor: backgroundColor,
-        elevation: 10.0,
+        elevation: elevation,
         mini: true,
         child: icon,
         onPressed: onPressed);
