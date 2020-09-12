@@ -6,7 +6,9 @@ class BorderedText extends StatelessWidget {
   final double fontSize;
   final FontWeight fontWeight;
   final TextOverflow overflow;
+  final TextAlign textAlign;
   final double strokeWidth;
+  final int maxLines;
   final Color borderColor;
   final Color fillColor;
 
@@ -16,8 +18,10 @@ class BorderedText extends StatelessWidget {
       this.fontFamily,
       this.fontSize,
       this.fontWeight,
+      this.textAlign,
       this.overflow,
       this.strokeWidth = 5,
+      this.maxLines = 1,
       this.borderColor = Colors.black,
       this.fillColor = Colors.white})
       : super(key: key);
@@ -28,6 +32,8 @@ class BorderedText extends StatelessWidget {
       children: <Widget>[
         Text(
           text,
+          textAlign: textAlign,
+          maxLines: maxLines,
           overflow: overflow,
           style: TextStyle(
             fontFamily: fontFamily,
@@ -41,6 +47,8 @@ class BorderedText extends StatelessWidget {
         ),
         Text(
           text,
+          textAlign: textAlign,
+          maxLines: maxLines,
           overflow: overflow,
           style: TextStyle(
             fontFamily: fontFamily,
