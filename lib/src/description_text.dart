@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class DescriptionTextWidget extends StatefulWidget {
+class DescriptionText extends StatefulWidget {
   final String text;
   final TextStyle style;
   final int maxLength;
@@ -9,7 +9,7 @@ class DescriptionTextWidget extends StatefulWidget {
   final Color buttonColor;
   final EdgeInsetsGeometry padding;
 
-  DescriptionTextWidget({
+  DescriptionText({
     @required this.text,
     this.style,
     this.maxLength: 250,
@@ -20,7 +20,7 @@ class DescriptionTextWidget extends StatefulWidget {
   });
 
   @override
-  _DescriptionTextWidgetState createState() => _DescriptionTextWidgetState(
+  _DescriptionTextState createState() => _DescriptionTextState(
         text: text,
         style: style,
         maxLength: maxLength,
@@ -31,7 +31,7 @@ class DescriptionTextWidget extends StatefulWidget {
       );
 }
 
-class _DescriptionTextWidgetState extends State<DescriptionTextWidget> {
+class _DescriptionTextState extends State<DescriptionText> {
   final String text;
   final TextStyle style;
   final int maxLength;
@@ -44,7 +44,7 @@ class _DescriptionTextWidgetState extends State<DescriptionTextWidget> {
   String secondHalf;
   bool flag = true;
 
-  _DescriptionTextWidgetState({
+  _DescriptionTextState({
     this.text,
     this.style,
     this.maxLength,
