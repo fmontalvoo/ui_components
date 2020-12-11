@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class MyAppBarButton extends StatelessWidget {
-  final Icon icon;
+  final Widget icon;
   final Object heroTag;
   final double elevation;
   final Color backgroundColor;
