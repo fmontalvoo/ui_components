@@ -39,6 +39,7 @@ class ProfilePicture extends StatelessWidget {
                         right: 0,
                         child: FloatingActionButton(
                             mini: true,
+                            heroTag: '44c3bcbadcd040485e64c2f7e221a36879314408',
                             backgroundColor: color,
                             child: Icon(Icons.camera_alt),
                             onPressed: onPressed),
