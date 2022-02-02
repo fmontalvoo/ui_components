@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 class DescriptionText extends StatefulWidget {
   final String text;
+  final TextAlign textAlign;
   final TextStyle style;
   final int maxLength;
   final String seeMore;
@@ -11,6 +12,7 @@ class DescriptionText extends StatefulWidget {
 
   DescriptionText({
     @required this.text,
+    this.textAlign = TextAlign.start,
     this.style,
     this.maxLength: 250,
     this.seeMore: "See more",
@@ -72,14 +74,14 @@ class _DescriptionTextState extends State<DescriptionText> {
     return Container(
       padding: padding,
       child: secondHalf.isEmpty
-          ? Text(firstHalf, textAlign: TextAlign.justify, style: style)
+          ? Text(firstHalf, textAlign: widget.textAlign, style: style)
           : Column(
               children: <Widget>[
                 Text(
                     flag
                         ? (firstHalf.trim() + "...")
                         : (firstHalf + secondHalf),
-                    textAlign: TextAlign.justify,
+                    textAlign: widget.textAlign,
                     style: style),
                 InkWell(
                   child: Row(
