@@ -18,7 +18,7 @@ class MyBackButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(8),
         child: _floatingActionButton(context),
       ),
     );
@@ -26,20 +26,24 @@ class MyBackButton extends StatelessWidget {
 
   FloatingActionButton _floatingActionButton(BuildContext context) {
     return FloatingActionButton(
-        heroTag: heroTag,
-        backgroundColor: backgroundColor,
-        elevation: elevation,
-        mini: true,
-        child: _BackButtonIcon(
-          color: arrowColor,
-        ),
-        onPressed: () => Navigator.maybePop(context));
+      heroTag: heroTag,
+      backgroundColor: backgroundColor,
+      elevation: elevation,
+      mini: true,
+      child: _BackButtonIcon(
+        color: arrowColor,
+      ),
+      onPressed: () => Navigator.maybePop(context),
+    );
   }
 }
 
 class _BackButtonIcon extends StatelessWidget {
   final Color? color;
-  const _BackButtonIcon({Key? key, this.color}) : super(key: key);
+  const _BackButtonIcon({
+    Key? key,
+    this.color,
+  }) : super(key: key);
 
   static IconData? _getIconData(TargetPlatform platform) {
     switch (platform) {

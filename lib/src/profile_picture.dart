@@ -5,8 +5,8 @@ class ProfilePicture extends StatelessWidget {
     Key? key,
     this.showCamera = false,
     this.color = Colors.grey,
-    this.width = 120.0,
-    this.height = 120.0,
+    this.width = 120,
+    this.height = 120,
     this.backgroundImage,
     this.onPressed,
   }) : super(key: key);
@@ -38,11 +38,12 @@ class ProfilePicture extends StatelessWidget {
                         bottom: 0,
                         right: 0,
                         child: FloatingActionButton(
-                            mini: true,
-                            heroTag: 'NjY2NzZkNmYwYQo=',
-                            backgroundColor: color,
-                            child: const Icon(Icons.camera_alt),
-                            onPressed: onPressed),
+                          mini: true,
+                          heroTag: 'NjY2NzZkNmYwYQo=',
+                          backgroundColor: color,
+                          child: const Icon(Icons.camera_alt),
+                          onPressed: onPressed,
+                        ),
                       )
                     : const SizedBox()
               ],

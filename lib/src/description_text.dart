@@ -10,7 +10,10 @@ class DescriptionText extends StatefulWidget {
     this.seeMore = "See more",
     this.seeLess = "See less",
     this.buttonColor = Colors.blue,
-    this.padding = const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
+    this.padding = const EdgeInsets.symmetric(
+      horizontal: 10,
+      vertical: 10,
+    ),
   }) : super(key: key);
 
   final String text;
@@ -36,6 +39,16 @@ class DescriptionText extends StatefulWidget {
 }
 
 class _DescriptionTextState extends State<DescriptionText> {
+  _DescriptionTextState({
+    this.text,
+    this.style,
+    this.maxLength,
+    this.seeMore,
+    this.seeLess,
+    this.buttonColor,
+    this.padding,
+  });
+
   final String? text;
   final TextStyle? style;
   final int? maxLength;
@@ -47,16 +60,6 @@ class _DescriptionTextState extends State<DescriptionText> {
   String? firstHalf;
   late String secondHalf;
   bool flag = true;
-
-  _DescriptionTextState({
-    this.text,
-    this.style,
-    this.maxLength,
-    this.seeMore,
-    this.seeLess,
-    this.buttonColor,
-    this.padding,
-  });
 
   @override
   void initState() {

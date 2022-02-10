@@ -5,7 +5,7 @@ class LoadingModal {
   LoadingModal(
     this.context, {
     this.opacity = 0.7,
-    this.radius = 20.0,
+    this.radius = 20,
   });
 
   final BuildContext context;

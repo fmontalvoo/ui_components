@@ -5,7 +5,7 @@ class MyAppBarButton extends StatelessWidget {
     Key? key,
     this.icon,
     this.heroTag = '',
-    this.elevation = 7.0,
+    this.elevation = 1,
     this.backgroundColor = Colors.white,
     required this.onPressed,
   }) : super(key: key);
@@ -20,7 +20,7 @@ class MyAppBarButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(8),
         child: _floatingActionButton(context),
       ),
     );

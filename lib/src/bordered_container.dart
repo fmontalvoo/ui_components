@@ -13,13 +13,13 @@ class BorderedContainer extends StatelessWidget {
     this.boxShadow = const <BoxShadow>[
       BoxShadow(
           color: Colors.black54,
-          blurRadius: 3.0,
-          offset: Offset(0.0, 5.0),
-          spreadRadius: 3.0)
+          blurRadius: 3,
+          offset: Offset(0, 5),
+          spreadRadius: 3)
     ],
     this.gradient,
     this.child,
-    this.strokeWidth = 1.0,
+    this.strokeWidth = 1,
   }) : super(key: key);
 
   final double width;

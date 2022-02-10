@@ -8,8 +8,8 @@ class RadialProgressIndicator extends StatefulWidget {
     this.width = double.infinity,
     this.height = double.infinity,
     required this.percentage,
-    this.inStrokeWitdh = 5.0,
-    this.outStrokeWitdh = 10.0,
+    this.inStrokeWitdh = 5,
+    this.outStrokeWitdh = 10,
     this.inStrokeColor = Colors.grey,
     this.outStrokeColor = Colors.green,
     this.showPercentage = true,
@@ -27,6 +27,7 @@ class RadialProgressIndicator extends StatefulWidget {
   final bool showPercentage;
   final Gradient? gradient;
   final TextStyle style;
+
   @override
   _RadialProgressIndicatorState createState() =>
       _RadialProgressIndicatorState();
@@ -56,7 +57,7 @@ class _RadialProgressIndicatorState extends State<RadialProgressIndicator>
 
   @override
   Widget build(BuildContext context) {
-    _controller!.forward(from: 0.0);
+    _controller!.forward(from: 0);
 
     final diferencia = widget.percentage - percentageAux;
     percentageAux = widget.percentage;
@@ -65,7 +66,7 @@ class _RadialProgressIndicatorState extends State<RadialProgressIndicator>
       animation: _controller!,
       builder: (context, child) {
         return Container(
-          padding: const EdgeInsets.all(7.0),
+          padding: const EdgeInsets.all(7),
           width: widget.width,
           height: widget.height,
           child: CustomPaint(
@@ -78,13 +79,14 @@ class _RadialProgressIndicatorState extends State<RadialProgressIndicator>
                       )
                     : Container()),
             painter: _RadialProgress(
-                percentage: (widget.percentage - diferencia) +
-                    (diferencia * _controller!.value),
-                inStrokeColor: widget.inStrokeColor,
-                outStrokeColor: widget.outStrokeColor,
-                inStrokeWitdh: widget.inStrokeWitdh,
-                outStrokeWitdh: widget.outStrokeWitdh,
-                gradient: widget.gradient),
+              percentage: (widget.percentage - diferencia) +
+                  (diferencia * _controller!.value),
+              inStrokeColor: widget.inStrokeColor,
+              outStrokeColor: widget.outStrokeColor,
+              inStrokeWitdh: widget.inStrokeWitdh,
+              outStrokeWitdh: widget.outStrokeWitdh,
+              gradient: widget.gradient,
+            ),
           ),
         );
       },
@@ -93,6 +95,15 @@ class _RadialProgressIndicatorState extends State<RadialProgressIndicator>
 }
 
 class _RadialProgress extends CustomPainter {
+  _RadialProgress({
+    this.percentage = 0,
+    this.inStrokeWitdh,
+    this.outStrokeWitdh,
+    this.inStrokeColor,
+    this.outStrokeColor,
+    this.gradient,
+  });
+
   final double percentage;
   final double? inStrokeWitdh;
   final double? outStrokeWitdh;
@@ -100,14 +111,6 @@ class _RadialProgress extends CustomPainter {
   final Color? outStrokeColor;
   final Gradient? gradient;
 
-  _RadialProgress({
-    this.percentage = 0.0,
-    this.inStrokeWitdh,
-    this.outStrokeWitdh,
-    this.inStrokeColor,
-    this.outStrokeColor,
-    this.gradient,
-  });
   @override
   void paint(Canvas canvas, Size size) {
     // Circulo
@@ -116,13 +119,16 @@ class _RadialProgress extends CustomPainter {
       ..color = inStrokeColor!
       ..style = PaintingStyle.stroke;
 
-    final center = Offset(size.width / 2.0, size.height / 2.0);
+    final center = Offset(size.width / 2, size.height / 2);
     final radius = math.min(size.width * 0.5, size.height * 0.5);
 
     canvas.drawCircle(center, radius, paintCricle);
 
     // Arco
-    final rect = Rect.fromCircle(center: const Offset(0.0, 0.0), radius: 180.0);
+    final rect = Rect.fromCircle(
+      center: const Offset(0, 0),
+      radius: 180,
+    );
 
     final paintArc = Paint()
       ..strokeWidth = outStrokeWitdh!
@@ -130,11 +136,20 @@ class _RadialProgress extends CustomPainter {
       ..color = outStrokeColor!
       ..style = PaintingStyle.stroke;
 
-    if (gradient != null) paintArc.shader = gradient!.createShader(rect);
+    if (gradient != null) {
+      paintArc.shader = gradient!.createShader(rect);
+    }
 
-    double arcAngle = 2 * math.pi * (percentage / 100.0);
-    canvas.drawArc(Rect.fromCircle(center: center, radius: radius),
-        (-math.pi / 2.0), arcAngle, false, paintArc);
+    double arcAngle = 2 * math.pi * (percentage / 100);
+    canvas.drawArc(
+        Rect.fromCircle(
+          center: center,
+          radius: radius,
+        ),
+        (-math.pi / 2),
+        arcAngle,
+        false,
+        paintArc);
   }
 
   @override
