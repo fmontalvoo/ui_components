@@ -1,20 +1,8 @@
 import 'package:flutter/material.dart';
 
 class BorderedContainer extends StatelessWidget {
-  final double width;
-  final double height;
-  final Widget child;
-  final EdgeInsetsGeometry margin;
-  final EdgeInsetsGeometry padding;
-  final Color borderColor;
-  final Color fillColor;
-  final BorderRadiusGeometry borderRadius;
-  final List<BoxShadow> boxShadow;
-  final Gradient gradient;
-  final double strokeWidth;
-
   const BorderedContainer({
-    Key key,
+    Key? key,
     this.width = double.infinity,
     this.height,
     this.margin,
@@ -33,6 +21,18 @@ class BorderedContainer extends StatelessWidget {
     this.child,
     this.strokeWidth = 1.0,
   }) : super(key: key);
+
+  final double width;
+  final double? height;
+  final Widget? child;
+  final EdgeInsetsGeometry? margin;
+  final EdgeInsetsGeometry? padding;
+  final Color borderColor;
+  final Color fillColor;
+  final BorderRadiusGeometry? borderRadius;
+  final List<BoxShadow> boxShadow;
+  final Gradient? gradient;
+  final double strokeWidth;
 
   @override
   Widget build(BuildContext context) {

@@ -3,19 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:ui_components/ui_components.dart';
 
 class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
-  final Color color;
-  final double height;
-  final Widget rigthButtonBar;
-  final Widget leftButtonBar;
-  final Widget title;
-  final ImageProvider<dynamic> image;
-  final Color opacityImg;
-  final BorderRadiusGeometry appBarBorderRadius;
-  final Gradient gradient;
-  final Object tag;
-
   const MyAppBar(
-      {Key key,
+      {Key? key,
       this.color,
       this.height = 100.0,
       this.rigthButtonBar = const MyBackButton(),
@@ -27,6 +16,17 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
       this.gradient,
       this.tag = ''})
       : super(key: key);
+
+  final Color? color;
+  final double height;
+  final Widget rigthButtonBar;
+  final Widget? leftButtonBar;
+  final Widget? title;
+  final ImageProvider<dynamic>? image;
+  final Color opacityImg;
+  final BorderRadiusGeometry? appBarBorderRadius;
+  final Gradient? gradient;
+  final Object tag;
 
   @override
   Widget build(BuildContext context) {
@@ -40,24 +40,24 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
       height: height,
       child: Stack(
         children: <Widget>[
-          image != null ? _image() : SizedBox(),
+          image != null ? _image() : const SizedBox(),
           title != null
               ? Center(
-                  child: SafeArea(child: title),
+                  child: SafeArea(child: title!),
                 )
-              : SizedBox(),
+              : const SizedBox(),
           Positioned(
             left: 0.0,
             top: size.shortestSide * .01,
             child: rigthButtonBar,
           ),
-          this.leftButtonBar != null
+          leftButtonBar != null
               ? Positioned(
                   right: 0.0,
                   top: size.shortestSide * .01,
-                  child: leftButtonBar,
+                  child: leftButtonBar!,
                 )
-              : SizedBox(),
+              : const SizedBox(),
         ],
       ),
     );
@@ -71,7 +71,10 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
           child: Container(
             decoration: BoxDecoration(
                 borderRadius: appBarBorderRadius,
-                image: DecorationImage(fit: BoxFit.cover, image: this.image)),
+                image: DecorationImage(
+                  fit: BoxFit.cover,
+                  image: image as ImageProvider<Object>,
+                )),
           ),
         ),
       ),
@@ -79,7 +82,7 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
         decoration:
             BoxDecoration(color: opacityImg, borderRadius: appBarBorderRadius),
         width: double.infinity,
-        height: this.height,
+        height: height,
       )
     ]);
   }

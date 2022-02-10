@@ -2,14 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
 class LoadingModal {
+  LoadingModal(
+    this.context, {
+    this.opacity = 0.7,
+    this.radius = 20.0,
+  });
+
   final BuildContext context;
   final double opacity;
   final double radius;
-  LoadingModal(this.context, {this.opacity = 0.7, this.radius = 20.0});
 
   void show() {
     showCupertinoModalPopup(
-      context: this.context,
+      context: context,
       builder: (_) => Container(
         width: double.infinity,
         height: double.infinity,

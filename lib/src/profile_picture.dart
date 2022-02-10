@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
 
 class ProfilePicture extends StatelessWidget {
+  const ProfilePicture({
+    Key? key,
+    this.showCamera = false,
+    this.color = Colors.grey,
+    this.width = 120.0,
+    this.height = 120.0,
+    this.backgroundImage,
+    this.onPressed,
+  }) : super(key: key);
+
   final bool showCamera;
   final Color color;
   final double width;
   final double height;
-  final ImageProvider<dynamic> backgroundImage;
-  final void Function() onPressed;
-
-  ProfilePicture({
-    Key key,
-    this.showCamera: false,
-    this.color: Colors.grey,
-    this.width: 120.0,
-    this.height: 120.0,
-    this.backgroundImage,
-    this.onPressed,
-  }) : super(key: key);
+  final ImageProvider<dynamic>? backgroundImage;
+  final void Function()? onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -26,11 +26,11 @@ class ProfilePicture extends StatelessWidget {
           children: <Widget>[
             Stack(
               children: <Widget>[
-                Container(
+                SizedBox(
                   width: width,
                   height: height,
                   child: CircleAvatar(
-                    backgroundImage: backgroundImage,
+                    backgroundImage: backgroundImage as ImageProvider<Object>?,
                   ),
                 ),
                 showCamera
@@ -39,12 +39,12 @@ class ProfilePicture extends StatelessWidget {
                         right: 0,
                         child: FloatingActionButton(
                             mini: true,
-                            heroTag: '44c3bcbadcd040485e64c2f7e221a36879314408',
+                            heroTag: 'NjY2NzZkNmYwYQo=',
                             backgroundColor: color,
-                            child: Icon(Icons.camera_alt),
+                            child: const Icon(Icons.camera_alt),
                             onPressed: onPressed),
                       )
-                    : SizedBox()
+                    : const SizedBox()
               ],
             ),
           ],

@@ -1,24 +1,26 @@
 import 'package:flutter/material.dart';
 
 class MyBackButton extends StatelessWidget {
+  const MyBackButton({
+    Key? key,
+    this.backgroundColor = Colors.white,
+    this.arrowColor = Colors.black,
+    this.elevation,
+    this.heroTag = 'back',
+  }) : super(key: key);
+
   final Color backgroundColor;
   final Color arrowColor;
-  final double elevation;
+  final double? elevation;
   final Object heroTag;
-
-  const MyBackButton(
-      {Key key,
-      this.backgroundColor: Colors.white,
-      this.arrowColor: Colors.black,
-      this.elevation,
-      this.heroTag = 'back'})
-      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Padding(
-          padding: EdgeInsets.all(8.0), child: _floatingActionButton(context)),
+        padding: const EdgeInsets.all(8.0),
+        child: _floatingActionButton(context),
+      ),
     );
   }
 
@@ -36,10 +38,10 @@ class MyBackButton extends StatelessWidget {
 }
 
 class _BackButtonIcon extends StatelessWidget {
-  final Color color;
-  const _BackButtonIcon({Key key, this.color}) : super(key: key);
+  final Color? color;
+  const _BackButtonIcon({Key? key, this.color}) : super(key: key);
 
-  static IconData _getIconData(TargetPlatform platform) {
+  static IconData? _getIconData(TargetPlatform platform) {
     switch (platform) {
       case TargetPlatform.android:
       case TargetPlatform.fuchsia:
@@ -50,8 +52,6 @@ class _BackButtonIcon extends StatelessWidget {
       case TargetPlatform.macOS:
         return Icons.arrow_back_ios_rounded;
     }
-    assert(false);
-    return null;
   }
 
   @override

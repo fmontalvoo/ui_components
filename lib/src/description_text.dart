@@ -1,27 +1,29 @@
 import 'package:flutter/material.dart';
 
 class DescriptionText extends StatefulWidget {
+  const DescriptionText({
+    Key? key,
+    required this.text,
+    this.textAlign = TextAlign.start,
+    this.style,
+    this.maxLength = 250,
+    this.seeMore = "See more",
+    this.seeLess = "See less",
+    this.buttonColor = Colors.blue,
+    this.padding = const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
+  }) : super(key: key);
+
   final String text;
   final TextAlign textAlign;
-  final TextStyle style;
+  final TextStyle? style;
   final int maxLength;
   final String seeMore;
   final String seeLess;
   final Color buttonColor;
   final EdgeInsetsGeometry padding;
 
-  DescriptionText({
-    @required this.text,
-    this.textAlign = TextAlign.start,
-    this.style,
-    this.maxLength: 250,
-    this.seeMore: "See more",
-    this.seeLess: "See less",
-    this.buttonColor: Colors.blue,
-    this.padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
-  });
-
   @override
+  // ignore: no_logic_in_create_state
   _DescriptionTextState createState() => _DescriptionTextState(
         text: text,
         style: style,
@@ -34,16 +36,16 @@ class DescriptionText extends StatefulWidget {
 }
 
 class _DescriptionTextState extends State<DescriptionText> {
-  final String text;
-  final TextStyle style;
-  final int maxLength;
-  final String seeMore;
-  final String seeLess;
-  final Color buttonColor;
-  final EdgeInsetsGeometry padding;
+  final String? text;
+  final TextStyle? style;
+  final int? maxLength;
+  final String? seeMore;
+  final String? seeLess;
+  final Color? buttonColor;
+  final EdgeInsetsGeometry? padding;
 
-  String firstHalf;
-  String secondHalf;
+  String? firstHalf;
+  late String secondHalf;
   bool flag = true;
 
   _DescriptionTextState({
@@ -59,10 +61,10 @@ class _DescriptionTextState extends State<DescriptionText> {
   @override
   void initState() {
     super.initState();
-    int textLength = text.length;
-    if (textLength > maxLength) {
-      firstHalf = text.substring(0, maxLength);
-      secondHalf = text.substring(maxLength, textLength);
+    int textLength = text!.length;
+    if (textLength > maxLength!) {
+      firstHalf = text!.substring(0, maxLength);
+      secondHalf = text!.substring(maxLength!, textLength);
     } else {
       firstHalf = text;
       secondHalf = "";
@@ -74,13 +76,13 @@ class _DescriptionTextState extends State<DescriptionText> {
     return Container(
       padding: padding,
       child: secondHalf.isEmpty
-          ? Text(firstHalf, textAlign: widget.textAlign, style: style)
+          ? Text(firstHalf!, textAlign: widget.textAlign, style: style)
           : Column(
               children: <Widget>[
                 Text(
                     flag
-                        ? (firstHalf.trim() + "...")
-                        : (firstHalf + secondHalf),
+                        ? (firstHalf!.trim() + "...")
+                        : (firstHalf! + secondHalf),
                     textAlign: widget.textAlign,
                     style: style),
                 InkWell(
@@ -88,7 +90,7 @@ class _DescriptionTextState extends State<DescriptionText> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: <Widget>[
                       Text(
-                        flag ? seeMore : seeLess,
+                        flag ? seeMore! : seeLess!,
                         style: TextStyle(color: buttonColor),
                       ),
                     ],
